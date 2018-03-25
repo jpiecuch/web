@@ -20,4 +20,8 @@ zuul:
       url: http://localhost:4200
     accounts:
       path: /accounts/**
-      url: http://localhost:8081
+      serviceId: accounts
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8083/eureka
