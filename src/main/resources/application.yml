@@ -1,0 +1,23 @@
+authorization-server:
+  url: http://localhost:8080
+security:
+  oauth2:
+    client:
+      client-id: gym-home
+      client-secret: 0564f7a2-05df-4cf9-bb85-bd4058283553
+      access-token-uri: ${authorization-server.url}/oauth/token
+      user-authorization-uri: ${authorization-server.url}/oauth/authorize
+      scope: read, write
+      authorized-grant-types: authorization_code
+    resource:
+      token-info-uri: ${authorization-server.url}/oauth/check_token
+server:
+  port: 8084
+zuul:
+  routes:
+    angular:
+      path: /**
+      url: http://localhost:4200
+    accounts:
+      path: /accounts/**
+      url: http://localhost:8081
