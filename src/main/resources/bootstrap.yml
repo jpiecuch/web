@@ -5,6 +5,4 @@ spring:
     active: development
   cloud:
     config:
-      uri: http://localhost:8082
-      username: user
-      password: mysecret
+      uri: http://localhost:8081
