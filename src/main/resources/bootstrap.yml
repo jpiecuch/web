@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: web
+  profiles:
+    active: development
+  cloud:
+    config:
+      uri: http://localhost:8082
+      username: user
+      password: mysecret
