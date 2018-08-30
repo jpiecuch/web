@@ -1,0 +1,33 @@
+server:
+  servlet:
+    session:
+      cookie:
+        name: WEBSESSION
+security:
+  oauth2:
+    client:
+      client-id: gym-home
+      client-secret: 0564f7a2-05df-4cf9-bb85-bd4058283553
+      access-token-uri: http://localhost:8090/accesstokenuri
+      user-authorization-uri: http://localhost:8090/userauthorizationuri
+      scope: read, write
+      authorized-grant-types: authorization_code
+    resource:
+      token-info-uri: http://localhost:8090/tokeninfouri
+zuul:
+  sensitive-headers:
+    - Cookie
+    - Set-Cookie
+  routes:
+    angular:
+      path: /**
+      url: http://localhost:4200
+    accounts:
+      path: /accounts/**
+      serviceId: accounts
+    exercises:
+      path: /exercises/**
+      serviceId: exercises
+eureka:
+  client:
+    enabled: false
