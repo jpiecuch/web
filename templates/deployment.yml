@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+  labels:
+    app: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: web
+        image: jpiecuch/web:1.0
+        ports:
+        - containerPort: 8084
+        env:
+          - name: LOGGING_LEVEL_ROOT
+            value: info
+          - name: SPRING_PROFILES_ACTIVE
+            value: k8s
+          - name: COMMON_AUTHORIZATION_ACCESSTOKENURI
+            value: http://internal-auth-service:8085/oauth/token
+          - name: COMMON_AUTHORIZATION_TOKENINFOURI
+            value: http://internal-auth-service:8085/oauth/check_token
+          - name: COMMON_AUTHORIZATION_USERAUTHORIZATIONURI
+            value: http://authorization/oauth/authorize
+          - name: SPRING_CLOUD_CONFIG_URI
+            value: http://config-service:8081
+          - name: SPRING_CLOUD_CONSUL_ENABLED
+            value: "false"
+          - name: SPRING_CLOUD_CONSUL_CONFIG_ENABLED
+            value: "false"
+          - name: SPRING_CLOUD_BUS_ENABLED
+            value: "false"
