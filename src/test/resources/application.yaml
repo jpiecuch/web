@@ -28,6 +28,3 @@ zuul:
     exercises:
       path: /exercises/**
       serviceId: exercises
-eureka:
-  client:
-    enabled: false
