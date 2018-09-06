@@ -28,3 +28,9 @@ zuul:
     exercises:
       path: /exercises/**
       serviceId: exercises
+spring:
+  autoconfigure:
+    exclude: org.springframework.cloud.kubernetes.discovery.KubernetesDiscoveryClientAutoConfiguration
+  cloud:
+    discovery:
+      enabled: false
