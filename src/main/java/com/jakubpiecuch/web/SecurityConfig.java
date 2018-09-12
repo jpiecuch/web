@@ -18,9 +18,9 @@ public class SecurityConfig extends OAuth2SsoDefaultConfiguration {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
         http.csrf().disable().antMatcher("/**").authorizeRequests()
-                .antMatchers("/login**").permitAll()
+                .antMatchers("/actuator/health").permitAll()
                 .anyRequest().authenticated();
+        super.configure(http);
     }
 }
