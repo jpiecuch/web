@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: jpiecuch/web:1.0
+        image: jpiecuch/web:latest
         ports:
         - containerPort: 8084
         env:
