@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: jpiecuch/web:latest
+        image: jpiecuch/web:${COMMIT_ID}
         ports:
         - containerPort: 8084
         env:
