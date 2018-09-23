@@ -43,20 +43,8 @@ pipeline {
                         remote.user = username
                         remote.password = password
                     }
-                    sh 'envsubst < config/templates/deployment.yml.template > config/templates/deployment.yml'
-                    sshPut remote: remote, from: 'config/templates', into: 'config'
 
-                    sh 'envsubst < accounts/templates/deployment.yml.template > accounts/templates/deployment.yml'
-                    sshPut remote: remote, from: 'accounts/templates', into: 'accounts'
-                    sshPut remote: remote, from: "accounts/templates-${params.Orchestrator}", into: "accounts"
-
-                    sh 'envsubst < authorization/templates/deployment.yml.template > authorization/templates/deployment.yml'
-                    sshPut remote: remote, from: 'authorization/templates', into: 'authorization'
-
-                    sh 'envsubst < exercises/templates/deployment.yml.template > exercises/templates/deployment.yml'
-                    sshPut remote: remote, from: 'exercises/templates', into: 'exercises'
-
-                    sh 'envsubst < web/templates/deployment.yml.template > web/templates/deployment.yml'
+                    sh 'envsubst < templates/deployment.yml.template > web/templates/deployment.yml'
                     sshPut remote: remote, from: 'web/templates', into: 'web'
 
                     sshScript remote: remote, script: "deploy/${params.Orchestrator}.sh"
