@@ -45,7 +45,7 @@ pipeline {
                     }
 
                     sh 'envsubst < templates/deployment.yml.template > web/templates/deployment.yml'
-                    sshPut remote: remote, from: 'web/templates', into: 'web'
+                    sshPut remote: remote, from: 'templates', into: 'web'
 
                     sshScript remote: remote, script: "deploy/${params.Orchestrator}.sh"
                 }
